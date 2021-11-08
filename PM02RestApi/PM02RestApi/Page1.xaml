@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="PM02RestApi.Page1">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ffimageloadingsvg:SvgImageSourceConverter x:Key="SvgImageSourceConverter"></ffimageloadingsvg:SvgImageSourceConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <ffimageloading:CachedImage  Source="{Binding Flag, Converter={StaticResource SvgImageSourceConverter}}" 
+                                            WidthRequest="100" 
+                                            LoadingPlaceholder = "Flag"
+                                            ErrorPlaceholder= "Error"
+                                            HeightRequest = "100"
+                                            CacheDuration= "30"
+                                            RetryCount= "5"
+                                            RetryDelay= "450"
+                                            DownsampleToViewSize = "true">
+            </ffimageloading:CachedImage>
+           
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
