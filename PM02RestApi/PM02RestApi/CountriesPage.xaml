@@ -22,24 +22,24 @@
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
 
                                 <Grid.ColumnDefinitions >
                                     <ColumnDefinition Width="*" />
-
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
-
-                                <ffimageloading:CachedImage  Source="{Binding flag}"
+                                <ffimageloading:CachedImage  Source="{Binding flags.png}"
                                             LoadingPlaceholder = "Flag"
                                             ErrorPlaceholder= "Error"
-                                            HeightRequest = "70"
+                                            Margin="5"
                                             CacheDuration= "30"
                                             RetryCount= "5"
                                             RetryDelay= "450"
-                                            DownsampleToViewSize = "true">
-                                </ffimageloading:CachedImage>
+                                            DownsampleToViewSize = "true"
+                                                             Grid.Column="0"
+                                                             Grid.Row="0"/>
 
+                                <Label Text="{Binding name.common}" HeightRequest="50" FontSize="20" HorizontalOptions="Start" VerticalOptions="Center" Grid.Column="1" Grid.Row="0"/>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
