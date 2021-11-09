@@ -10,28 +10,67 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using static PM02RestApi.View.CountryViewModel;
 
 namespace PM02RestApi
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CountriesPage : ContentPage
     {
+        public string region;
+
         public CountriesPage()
         {
             InitializeComponent();
-
+            BindingContext = new CountryViewModel();
 
         }
 
-        private async void btnget_Clicked(object sender, EventArgs e)
-        {
-            var current = Connectivity.NetworkAccess;
 
+
+        private async void OnPickerSelectedIndexChanged(object sender, EventArgs e)
+        {
+
+                 var current = Connectivity.NetworkAccess;
+           
             if (current == NetworkAccess.Internet)
             {
-                List<Countries.Example> listapersonas = new List<Countries.Example>();
-                listapersonas = await CountriesControllers.getpaises();
-                lstPersonas.ItemsSource = listapersonas;
+                var picker = (Picker)sender;
+                int selectedIndex = picker.SelectedIndex;
+
+                if (selectedIndex == 0)
+                {
+                    List<Countries.Example> listapersonas = new List<Countries.Example>();
+                    listapersonas = await CountriesControllers.getpaisesafrica();
+                    lstPersonas.ItemsSource = listapersonas;
+
+                } else if (selectedIndex == 1)
+                {
+                    List<Countries.Example> listapersonas = new List<Countries.Example>();
+                    listapersonas = await CountriesControllers.getpaisesamerica();
+                    lstPersonas.ItemsSource = listapersonas;
+
+                }
+                else if (selectedIndex == 2)
+                {
+                    List<Countries.Example> listapersonas = new List<Countries.Example>();
+                    listapersonas = await CountriesControllers.getpaisesasia();
+                    lstPersonas.ItemsSource = listapersonas;
+
+                }
+                else if(selectedIndex == 3)
+                {
+                    List<Countries.Example> listapersonas = new List<Countries.Example>();
+                    listapersonas = await CountriesControllers.getpaiseseuropa();
+                    lstPersonas.ItemsSource = listapersonas;
+                }
+                else if (selectedIndex == 4)
+                {
+                    List<Countries.Example> listapersonas = new List<Countries.Example>();
+                    listapersonas = await CountriesControllers.getpaisesoceania();
+                    lstPersonas.ItemsSource = listapersonas;
+                }
+
             }
             else
             {

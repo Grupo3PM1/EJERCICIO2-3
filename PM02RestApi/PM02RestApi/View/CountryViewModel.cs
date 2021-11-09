@@ -3,36 +3,80 @@ using PM02RestApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace PM02RestApi.View
 {
-     /*public class CountryViewModel : ViewModel
+    public class CountryViewModel:INotifyPropertyChanged
     {
-        private bool isLoading;
 
-        public bool IsLoading
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName]string name = null)
         {
-            get { return isLoading; }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+        public List<Region> Regioneslist { get; set; }
 
-            set { isLoading = value; OnPropertyChanged(); }
+        public CountryViewModel()
+        {
+            Regioneslist = GetRegiones().OrderBy(t => t.value).ToList();
         }
 
-        private ObservableCollection<Countries> banderas;
-
-        public ObservableCollection<Countries> Banderas
+        private Region _selectedRegion { get; set; }
+        public  Region SelectedRegion
         {
-            get { return banderas; }
-            set { banderas = value; OnPropertyChanged(); }
+            get { return _selectedRegion; }
+            set
+            {
+                if (_selectedRegion != value)
+                {
+                    _selectedRegion = value;
+                    MyRegion = "Region Seleccionada: " + _selectedRegion.value;
+                }
+            }
         }
 
-        public async Task LoadCountries()
-
+        private string _myRegion;
+        public String MyRegion
         {
-            IsLoading = true;
-            var banderas = await CountriesControllers.GetCountries(); Banderas = new ObservableCollection<Countries>(banderas);
-            IsLoading = false;
+            get { return _myRegion; }
+            set
+            {
+                if (_myRegion != value)
+                {
+                    _myRegion = value;
+                    OnPropertyChanged();                }
+            }
         }
-        }*/
+
+
+        public List<Region> GetRegiones()
+        {
+            var region = new List<Region>()
+            {
+                new Region(){Key = 1, value = "Africa"},
+                new Region(){Key = 2, value = "America"},
+                new Region(){Key = 3, value = "Asia"},
+                new Region(){Key = 4, value = "Europa"},
+                new Region(){Key = 5, value = "Oceanía"}
+            };
+
+            return region;
+        }
+
+        public class Region
+        {
+            public int Key { get; set; }
+            public string value { get; set; }
+        }
+
+    }
+
+
+
 }

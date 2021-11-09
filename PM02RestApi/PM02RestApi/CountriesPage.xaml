@@ -4,31 +4,41 @@
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              x:Class="PM02RestApi.CountriesPage">
+
+  
+    
     <ContentPage.Resources>
         <ResourceDictionary>
             <ffimageloadingsvg:SvgImageSourceConverter x:Key="SvgImageSourceConverter"></ffimageloadingsvg:SvgImageSourceConverter>
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <ContentPage.Content>
-        <StackLayout>
-            <Button Text="Consumir Web service" x:Name="btnget" Clicked="btnget_Clicked" />
 
-            <ListView x:Name="lstPersonas"  HasUnevenRows="True" SeparatorVisibility="None" >
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell >
+    <StackLayout>
+        <Label Text="Ejercicio 2.3" HorizontalOptions="CenterAndExpand" Margin="0,30,0,0" FontSize="Large"/>
+        <Label Text="Busqueda de Regiones" HorizontalOptions="CenterAndExpand" FontSize="15"/>
 
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
+        <Picker x:Name="PicketCountries" Margin="0,40,0,0" SelectedIndexChanged="OnPickerSelectedIndexChanged" Title="Seleccione una Región" 
+                ItemsSource="{Binding Regioneslist}" 
+                ItemDisplayBinding="{Binding value}"
+                SelectedItem="{Binding SelectedRegion}" HorizontalOptions="Center" WidthRequest="300"/>
 
-                                <Grid.ColumnDefinitions >
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <ffimageloading:CachedImage  Source="{Binding flags.png}"
+        <ListView x:Name="lstPersonas"  HasUnevenRows="True" SeparatorVisibility="None" Margin="20">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell >
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions >
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <ffimageloading:CachedImage  Source="{Binding flags.png}"
                                             LoadingPlaceholder = "Flag"
                                             ErrorPlaceholder= "Error"
                                             Margin="5"
@@ -39,13 +49,12 @@
                                                              Grid.Column="0"
                                                              Grid.Row="0"/>
 
-                                <Label Text="{Binding name.common}" HeightRequest="50" FontSize="20" HorizontalOptions="Start" VerticalOptions="Center" Grid.Column="1" Grid.Row="0"/>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                            <Label Text="{Binding name.common}" HeightRequest="50" FontSize="17" HorizontalOptions="Start" VerticalOptions="Center" Grid.Column="1" Grid.Row="0"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
-        </StackLayout>
-    </ContentPage.Content>
+    </StackLayout>
 </ContentPage>
