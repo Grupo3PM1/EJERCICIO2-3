@@ -95,5 +95,24 @@ namespace PM02RestApi.Controllers
             return listapersonas;
         }
 
+
+        public async static Task<List<Models.LatLongcs.Example>> getpaisbyname(String namepais)
+        {
+            //List<Models.Countries.Example> listapais = new List<Models.Countries.Example>();
+            List<Models.LatLongcs.Example> latlong = new List<Models.LatLongcs.Example>();
+            using (HttpClient client = new HttpClient())
+            {
+               
+                String urlbypais = "  https://restcountries.com/v2/name/" + namepais + "?fields=latlng";
+                var response = await client.GetAsync(urlbypais);
+                if (response.IsSuccessStatusCode)
+                {
+                    var contenido = response.Content.ReadAsStringAsync().Result;
+                    latlong = JsonConvert.DeserializeObject<List<Models.LatLongcs.Example>>(contenido);
+
+                }
+            }
+            return latlong;
+        }
     }
 }

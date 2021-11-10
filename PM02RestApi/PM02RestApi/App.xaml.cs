@@ -9,7 +9,8 @@ namespace PM02RestApi
         public App()
         {
             InitializeComponent();
-
+           
+            //MainPage = new NavigationPage(new CountriesPage());
             MainPage = new CountriesPage();
         }
 

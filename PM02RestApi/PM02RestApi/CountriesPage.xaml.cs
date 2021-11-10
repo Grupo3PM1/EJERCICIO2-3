@@ -43,12 +43,15 @@ namespace PM02RestApi
                     List<Countries.Example> listapersonas = new List<Countries.Example>();
                     listapersonas = await CountriesControllers.getpaisesafrica();
                     lstPersonas.ItemsSource = listapersonas;
+                   
 
-                } else if (selectedIndex == 1)
+                }
+                else if (selectedIndex == 1)
                 {
                     List<Countries.Example> listapersonas = new List<Countries.Example>();
                     listapersonas = await CountriesControllers.getpaisesamerica();
                     lstPersonas.ItemsSource = listapersonas;
+                 
 
                 }
                 else if (selectedIndex == 2)
@@ -56,6 +59,7 @@ namespace PM02RestApi
                     List<Countries.Example> listapersonas = new List<Countries.Example>();
                     listapersonas = await CountriesControllers.getpaisesasia();
                     lstPersonas.ItemsSource = listapersonas;
+                   
 
                 }
                 else if(selectedIndex == 3)
@@ -63,20 +67,51 @@ namespace PM02RestApi
                     List<Countries.Example> listapersonas = new List<Countries.Example>();
                     listapersonas = await CountriesControllers.getpaiseseuropa();
                     lstPersonas.ItemsSource = listapersonas;
+                 
                 }
                 else if (selectedIndex == 4)
                 {
                     List<Countries.Example> listapersonas = new List<Countries.Example>();
                     listapersonas = await CountriesControllers.getpaisesoceania();
                     lstPersonas.ItemsSource = listapersonas;
+              
                 }
 
             }
             else
             {
                 await DisplayAlert("Conexion", "No se encuentra conectado a internet", "Ok");
+
             }
         }
 
+        private async void lstPersonas_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            var valores = e.SelectedItem as Countries.Example;
+            String nombrepais = valores.name.common;
+
+            List<LatLongcs.Example> listapais = new List<LatLongcs.Example>();
+            listapais = await CountriesControllers.getpaisbyname(nombrepais);
+            double latitud=0 , longitud=0;
+
+            foreach (IList<LatLongcs.Example> ll in listapais)
+            {
+                latitud = ll[0];
+                longitud = ll[1];
+            }
+            await DisplayAlert("Error", "prueba"+nombrepais,"OK");
+            await DisplayAlert("latitud", latitud.ToString(), "OK");
+            await DisplayAlert("longitud", longitud.ToString(), "OK");
+            //var ubicacion = lstPersonas.SelectedItem as Models.Countries.Example;
+
+
+
+            await Navigation.PushAsync(new MapsPage());
+            //await Navigation.PushAsync(new NavigationPage(new MapsPage()));
+
+
+           
+
+        }
     }
 }

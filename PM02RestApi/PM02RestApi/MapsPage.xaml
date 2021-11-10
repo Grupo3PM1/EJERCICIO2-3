@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             x:Class="PM02RestApi.MapsPage">
+
+
+
+
+
+    <maps:Map x:Name="Maps" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" IsShowingUser="True">
+        <maps:Map.ItemTemplate>
+            <DataTemplate>
+                <maps:Pin Position="{Binding capitalInfo.latlng}" 
+                          Address="{Binding name.common}"
+                          Label="{Binding  name.common}" />
+                         
+            </DataTemplate>
+            </maps:Map.ItemTemplate>
+        </maps:Map>
+
+   
+  
+
+</ContentPage>
