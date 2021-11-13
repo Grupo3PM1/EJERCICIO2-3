@@ -10,8 +10,8 @@ namespace PM02RestApi
         {
             InitializeComponent();
            
-            //MainPage = new NavigationPage(new CountriesPage());
-            MainPage = new CountriesPage();
+            MainPage = new NavigationPage(new CountriesPage());
+            //MainPage = new CountriesPage();
         }
 
         protected override void OnStart()

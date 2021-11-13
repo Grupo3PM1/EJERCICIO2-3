@@ -11,9 +11,9 @@
     <maps:Map x:Name="Maps" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" IsShowingUser="True">
         <maps:Map.ItemTemplate>
             <DataTemplate>
-                <maps:Pin Position="{Binding capitalInfo.latlng}" 
-                          Address="{Binding name.common}"
-                          Label="{Binding  name.common}" />
+                <maps:Pin Position="{Binding mapac}" 
+                          Address="Pais"
+                          Label="Pais" />
                          
             </DataTemplate>
             </maps:Map.ItemTemplate>

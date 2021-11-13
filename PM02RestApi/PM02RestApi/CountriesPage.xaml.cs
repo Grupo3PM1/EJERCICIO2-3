@@ -1,4 +1,5 @@
-﻿using PM02RestApi.Controllers;
+﻿using Plugin.Geolocator.Abstractions;
+using PM02RestApi.Controllers;
 using PM02RestApi.Models;
 using PM02RestApi.View;
 using System;
@@ -89,25 +90,18 @@ namespace PM02RestApi
         {
             var valores = e.SelectedItem as Countries.Example;
             String nombrepais = valores.name.common;
-
-            List<LatLongcs.Example> listapais = new List<LatLongcs.Example>();
-            listapais = await CountriesControllers.getpaisbyname(nombrepais);
-            double latitud=0 , longitud=0;
-
-            foreach (IList<LatLongcs.Example> ll in listapais)
-            {
-                latitud = ll[0];
-                longitud = ll[1];
-            }
-            await DisplayAlert("Error", "prueba"+nombrepais,"OK");
-            await DisplayAlert("latitud", latitud.ToString(), "OK");
-            await DisplayAlert("longitud", longitud.ToString(), "OK");
-            //var ubicacion = lstPersonas.SelectedItem as Models.Countries.Example;
+            Double Latvar = valores.latlng[0];
+            Double Longvar = valores.latlng[1];
+            await DisplayAlert("Error", "Pais: "+nombrepais, "OK");
+            await DisplayAlert("Error", "Lat: "+Latvar.ToString()+" Log: "+Longvar.ToString(), "OK");
 
 
 
-            await Navigation.PushAsync(new MapsPage());
-            //await Navigation.PushAsync(new NavigationPage(new MapsPage()));
+            var mapac = new Position(Latvar, Longvar);
+            var page = new MapsPage();
+            page.BindingContext = mapac;
+            //await Navigation.PushAsync(page);
+            await Navigation.PushAsync(new NavigationPage(page));
 
 
            

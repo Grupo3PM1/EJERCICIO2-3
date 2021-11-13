@@ -8,12 +8,7 @@ namespace PM02RestApi.Models
     {
         public class Example
         {
-            public IList<double> latlng { get; set; }
-
-            public static implicit operator double(Example v)
-            {
-                throw new NotImplementedException();
-            }
+            public double[] latlng { get; set; }
         }
 
     }
