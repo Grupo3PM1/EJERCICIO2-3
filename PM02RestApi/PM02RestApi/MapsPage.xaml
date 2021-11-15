@@ -3,23 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              x:Class="PM02RestApi.MapsPage">
-
-
-
-
-
-    <maps:Map x:Name="Maps" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" IsShowingUser="True">
-        <maps:Map.ItemTemplate>
-            <DataTemplate>
-                <maps:Pin Position="{Binding mapac}" 
-                          Address="Pais"
-                          Label="Pais" />
-                         
-            </DataTemplate>
-            </maps:Map.ItemTemplate>
-        </maps:Map>
-
-   
-  
-
+    <StackLayout>
+        <maps:Map x:Name="Maps" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" IsShowingUser="True"/>
+        <Label x:Name="txtLat"  Text="{Binding lat}"/>
+        <Label x:Name="txtLng"  Text="{Binding lng}"/>
+        <Label x:Name="txtNamep"  Text="{Binding namep}"/>
+        <Label x:Name="txtCapitalp"  Text="{Binding capitalp}"/>
+    </StackLayout>
 </ContentPage>

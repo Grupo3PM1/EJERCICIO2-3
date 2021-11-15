@@ -96,22 +96,22 @@ namespace PM02RestApi.Controllers
         }
 
 
-        public async static Task<Models.LatLongcs.Example> getpaisbyname(String namepais)
-        {
-            //List<Models.Countries.Example> listapais = new List<Models.Countries.Example>();
-            Models.LatLongcs.Example latlong = new Models.LatLongcs.Example();
-            using (HttpClient client = new HttpClient())
-            {
+        //public async static Task<Models.LatLongcs.Example> getpaisbyname(String namepais)
+        //{
+        //    //List<Models.Countries.Example> listapais = new List<Models.Countries.Example>();
+        //    Models.LatLongcs.Example latlong = new Models.LatLongcs.Example();
+        //    using (HttpClient client = new HttpClient())
+        //    {
                
-                String urlbypais = "https://restcountries.com/v2/name/" + namepais + "?fields=latlng";
-                var response = await client.GetAsync(urlbypais);
-                if (response.IsSuccessStatusCode)
-                {
-                    var contenido = response.Content.ReadAsStringAsync().Result;
-                    latlong = JsonConvert.DeserializeObject<Models.LatLongcs.Example>(contenido);
-                }
-            }
-            return latlong;
-        }
+        //        String urlbypais = "https://restcountries.com/v2/name/" + namepais + "?fields=latlng";
+        //        var response = await client.GetAsync(urlbypais);
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            var contenido = response.Content.ReadAsStringAsync().Result;
+        //            latlong = JsonConvert.DeserializeObject<Models.LatLongcs.Example>(contenido);
+        //        }
+        //    }
+        //    return latlong;
+        //}
     }
 }

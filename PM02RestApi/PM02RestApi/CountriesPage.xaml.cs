@@ -90,16 +90,20 @@ namespace PM02RestApi
         {
             var valores = e.SelectedItem as Countries.Example;
             String nombrepais = valores.name.common;
+            String capitalpais = valores.capital[0];
             Double Latvar = valores.latlng[0];
             Double Longvar = valores.latlng[1];
-            await DisplayAlert("Error", "Pais: "+nombrepais, "OK");
-            await DisplayAlert("Error", "Lat: "+Latvar.ToString()+" Log: "+Longvar.ToString(), "OK");
-
-
-
-            var mapac = new Position(Latvar, Longvar);
+            //await DisplayAlert("Error", "Pais: "+nombrepais, "OK");
+            //await DisplayAlert("Error", "Lat: "+Latvar.ToString()+" Log: "+Longvar.ToString(), "OK");
+            LatLongcs.dataubic classdata = new LatLongcs.dataubic
+            {
+                lat = Latvar,
+                lng = Longvar,
+                namep = nombrepais,
+                capitalp = capitalpais,
+            };
             var page = new MapsPage();
-            page.BindingContext = mapac;
+            page.BindingContext = classdata;
             //await Navigation.PushAsync(page);
             await Navigation.PushAsync(new NavigationPage(page));
 
