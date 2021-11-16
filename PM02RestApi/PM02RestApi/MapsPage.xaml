@@ -5,9 +5,11 @@
              x:Class="PM02RestApi.MapsPage">
     <StackLayout>
         <maps:Map x:Name="Maps" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" IsShowingUser="True"/>
-        <Label x:Name="txtLat"  Text="{Binding lat}"/>
-        <Label x:Name="txtLng"  Text="{Binding lng}"/>
-        <Label x:Name="txtNamep"  Text="{Binding namep}"/>
-        <Label x:Name="txtCapitalp"  Text="{Binding capitalp}"/>
+        <FlexLayout>
+            <Label x:Name="txtLat"  Text="{Binding lat}" TextColor="Transparent"/>
+            <Label x:Name="txtLng"  Text="{Binding lng}" TextColor="Transparent"/>
+            <Label x:Name="txtNamep"  Text="{Binding namep}" TextColor="Transparent"/>
+            <Label x:Name="txtCapitalp"  Text="{Binding capitalp}" TextColor="Transparent"/>
+        </FlexLayout>
     </StackLayout>
 </ContentPage>
