@@ -9,6 +9,7 @@ namespace PM02RestApi.Models
     {
         public class dataubic
         {
+
             public double lat { get; set; }
             public double lng { get; set; }
             public String namep {get; set; }
